@@ -1,4 +1,4 @@
-use crate::domains::value_objects::ValueObject;
+use crate::value_objects::ValueObject;
 use std::fmt;
 
 #[derive(Debug, PartialEq, Clone)]

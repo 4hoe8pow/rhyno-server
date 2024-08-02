@@ -1,5 +1,6 @@
-use crate::domains::{user::user_entity::User, value_objects::ValueObject};
+use rhyno_domain::{user::user_entity::User, value_objects::ValueObject};
 use serde::{Deserialize, Serialize};
+
 #[derive(Deserialize)]
 pub struct UserDTO {
     pub id: u32,

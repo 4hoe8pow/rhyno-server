@@ -1,7 +1,7 @@
-use crate::domains::user::user_entity::User;
-use crate::domains::value_objects::user_email::UserEmail;
-use crate::domains::value_objects::user_id::UserId;
-use crate::domains::value_objects::user_name::UserName;
+use crate::user::user_entity::User;
+use crate::value_objects::user_email::UserEmail;
+use crate::value_objects::user_id::UserId;
+use crate::value_objects::user_name::UserName;
 
 pub trait UserFactory {
     fn create(&self, id: u32, name: String, email: String) -> Result<User, String>;

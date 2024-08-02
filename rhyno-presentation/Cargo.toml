@@ -1,0 +1,7 @@
+[package]
+name = "rhyno-presentation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rhyno-application = { path = "../rhyno-application" }

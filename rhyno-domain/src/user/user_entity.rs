@@ -1,6 +1,6 @@
-use crate::domains::value_objects::user_email::UserEmail;
-use crate::domains::value_objects::user_id::UserId;
-use crate::domains::value_objects::user_name::UserName;
+use crate::value_objects::user_email::UserEmail;
+use crate::value_objects::user_id::UserId;
+use crate::value_objects::user_name::UserName;
 
 pub struct User {
     pub id: UserId,

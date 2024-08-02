@@ -1,5 +1,4 @@
-use crate::domains::user::user_entity::User;
-use crate::domains::user::user_repository::UserRepository;
+use rhyno_domain::user::{user_entity::User, user_repository::UserRepository};
 
 pub struct UserRepositoryImpl;
 

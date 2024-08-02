@@ -1,9 +1,5 @@
-mod applications;
 mod container;
-mod domains;
 mod handlers;
-mod infrastructures;
-mod presentations;
 
 use crate::container::RegistryContainer;
 use crate::handlers::*;

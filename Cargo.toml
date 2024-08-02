@@ -1,13 +1,25 @@
 [package]
 name = "rhyno-server"
+authors = ["Yu Tokunaga<tokunga@grill-ware.com>"]
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+rhyno-presentation = { path = "rhyno-presentation" }
+rhyno-application = { path = "rhyno-application" }
+rhyno-domain = { path = "rhyno-domain" }
+rhyno-infrastructures = { path = "rhyno-infrastructures" }
 axum = "0.7.4"
 shuttle-axum = "0.47.0"
 shuttle-runtime = "0.47.0"
 tokio = "1.28.2"
-serde = { version = "1.0", features = ["derive"] }
-qdrant-client = "1.10.1"
-shuttle-qdrant = "0.47.0"
+sqlx = "0.7.1"
+shuttle-shared-db = { version = "0.47.0", features = ["postgres", "sqlx"] }
+
+[workspace]
+members = [
+  "rhyno-domain",
+  "rhyno-application",
+  "rhyno-infrastructures",
+  "rhyno-presentation",
+]

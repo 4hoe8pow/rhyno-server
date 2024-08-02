@@ -1,6 +1,6 @@
-use crate::applications::dto::user_dto::{UserDTO, UserRegisterResponse};
 use crate::RegistryContainer;
 use axum::{http::StatusCode, Extension, Json};
+use rhyno_application::dto::user_dto::{UserDTO, UserRegisterResponse};
 use std::sync::Arc;
 
 pub async fn register_user(

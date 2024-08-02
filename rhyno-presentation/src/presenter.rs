@@ -1,5 +1,4 @@
-use crate::applications::dto::user_dto::UserDTO;
-use crate::applications::user_usecase::user_output_port::UserOutputPort;
+use rhyno_application::{dto::user_dto::UserDTO, user_usecase::user_output_port::UserOutputPort};
 
 pub struct UserPresenter;
 

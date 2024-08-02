@@ -1,9 +1,7 @@
-use crate::applications::dto::user_dto::UserDTO;
-use crate::applications::user_usecase::user_input_port::UserInputPort;
-use crate::applications::user_usecase::user_output_port::UserOutputPort;
+use crate::dto::user_dto::UserDTO;
+use rhyno_domain::user::{user_factory::UserFactory, user_repository::UserRepository};
 
-use crate::domains::user::user_factory::UserFactory;
-use crate::domains::user::user_repository::UserRepository;
+use super::{user_input_port::UserInputPort, user_output_port::UserOutputPort};
 
 pub struct UserInteractor<R: UserRepository, O: UserOutputPort, F: UserFactory> {
     repository: R,

@@ -1,8 +1,7 @@
-use crate::applications::user_usecase::user_interactor::UserInteractor;
-use crate::domains::user::user_factory::DefaultUserFactory;
-use crate::infrastructures::user_repository_impl::UserRepositoryImpl;
-use crate::presentations::controller::UserController;
-use crate::presentations::presenter::UserPresenter;
+use rhyno_application::user_usecase::user_interactor::UserInteractor;
+use rhyno_domain::user::user_factory::DefaultUserFactory;
+use rhyno_infrastructures::user_repository_impl::UserRepositoryImpl;
+use rhyno_presentation::{controller::UserController, presenter::UserPresenter};
 
 pub struct RegistryContainer {
     pub controller:
