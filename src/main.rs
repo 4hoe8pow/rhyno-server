@@ -1,25 +1,26 @@
-use axum::{extract::State, routing::get, Router};
-use qdrant_client::Qdrant;
+mod applications;
+mod container;
+mod domains;
+mod handlers;
+mod infrastructures;
+mod presentations;
+
+use crate::container::RegistryContainer;
+use crate::handlers::*;
+use axum::{
+    routing::{get, post},
+    Extension, Router,
+};
 use std::sync::Arc;
 
-struct AppState {
-    qdrant: Qdrant,
-}
-
-async fn list_collections(State(state): State<Arc<AppState>>) -> String {
-    format!("{:?}\n", state.qdrant.list_collections().await)
-}
-
 #[shuttle_runtime::main]
-async fn main(
-    #[shuttle_qdrant::Qdrant(cloud_url = "{secrets.CLOUD_URL}", api_key = "{secrets.API_KEY}")]
-    qdrant: Qdrant,
-) -> shuttle_axum::ShuttleAxum {
-    let state = Arc::new(AppState { qdrant });
+async fn main() -> shuttle_axum::ShuttleAxum {
+    let state = Arc::new(RegistryContainer::new());
 
     let router = Router::new()
-        .route("/", get(list_collections))
-        .with_state(state);
+        .route("/", get(hello_world))
+        .route("/register", post(register_user))
+        .layer(Extension(state));
 
     Ok(router.into())
 }
