@@ -19,23 +19,36 @@ impl<R: UserRepository, O: UserOutputPort, F: UserFactory> UserInteractor<R, O, 
     }
 }
 
-impl<R: UserRepository, O: UserOutputPort, F: UserFactory> UserInputPort
-    for UserInteractor<R, O, F>
+impl<
+        R: UserRepository + Send + Sync,
+        O: UserOutputPort + Send + Sync,
+        F: UserFactory + Send + Sync,
+    > UserInputPort for UserInteractor<R, O, F>
 {
-    async fn register_user(&self, id: u32, name: String, email: String) -> Result<(), String> {
-        let user = self
-            .factory
-            .create(id, name, email)
-            .map_err(|e| format!("Failed to create user: {}", e))?;
+    fn register_user(
+        &self,
+        id: u32,
+        name: String,
+        email: String,
+    ) -> impl std::future::Future<Output = Result<(), String>> + Send {
+        let repository = &self.repository;
+        let output = &self.output;
+        let factory = &self.factory;
 
-        self.repository
-            .save(&user)
-            .await
-            .map_err(|e| format!("Failed to save user: {}", e))?;
+        async move {
+            let user = factory
+                .create(id, name, email)
+                .map_err(|e| format!("Failed to create user: {}", e))?;
 
-        let user_dto = UserDTO::from(&user);
-        self.output.show_user(&user_dto);
+            repository
+                .save(&user)
+                .await
+                .map_err(|e| format!("Failed to save user: {}", e))?;
 
-        Ok(())
+            let user_dto = UserDTO::from(&user);
+            output.show_user(&user_dto);
+
+            Ok(())
+        }
     }
 }

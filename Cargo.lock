@@ -1657,6 +1657,7 @@ name = "rhyno-presentation"
 version = "0.1.0"
 dependencies = [
  "rhyno-application",
+ "serde",
 ]
 
 [[package]]

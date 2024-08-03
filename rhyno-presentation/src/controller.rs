@@ -1,7 +1,6 @@
-use rhyno_application::{
-    dto::user_dto::{UserDTO, UserRegisterResponse},
-    user_usecase::user_input_port::UserInputPort,
-};
+use rhyno_application::{dto::user_dto::UserDTO, user_usecase::user_input_port::UserInputPort};
+
+use crate::UserRegisterResponse;
 
 pub struct UserController<I: UserInputPort> {
     input_port: I,

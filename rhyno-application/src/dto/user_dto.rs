@@ -1,5 +1,5 @@
 use rhyno_domain::{user::user_entity::User, value_objects::ValueObject};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 #[derive(Deserialize)]
 pub struct UserDTO {
@@ -16,10 +16,4 @@ impl From<&User> for UserDTO {
             email: (&user.email).to_string(),
         }
     }
-}
-
-#[derive(Serialize)]
-pub struct UserRegisterResponse {
-    pub success: bool,
-    pub message: String,
 }
